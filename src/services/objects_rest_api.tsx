@@ -14,7 +14,7 @@ export interface objectI {
   data: objectData;
 }
 
-export interface partiallyUpdateObjectIc {
+export interface partiallyUpdateObjectI {
   name?: string;
   data?: {
     year?: number;
@@ -34,7 +34,7 @@ export const api = (apiUrl = defaultApiUrl) => {
     newObject: (data: objectI) => axios.post("", data),
     updateObject: (id: string, data: objectI) =>
       axios.put(`/objects/${id}`, data),
-    partiallyUpdateObject: (id: string, data: partiallyUpdateObjectIc) =>
+    partiallyUpdateObject: (id: string, data: partiallyUpdateObjectI) =>
       axios.patch(`/objects/${id}`, data),
     deleteObject: (id: string) => axios.delete(`/objects/${id}`),
   };
