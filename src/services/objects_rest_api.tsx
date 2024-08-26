@@ -10,11 +10,13 @@ type objectData = {
 };
 
 export interface objectI {
+  id: string | number;
   name: string;
   data: objectData;
 }
 
 export interface partiallyUpdateObjectI {
+  id?: string | number;
   name?: string;
   data?: {
     year?: number;
@@ -25,17 +27,17 @@ export interface partiallyUpdateObjectI {
 }
 
 export const api = (apiUrl = defaultApiUrl) => {
-  axios.create({
+  const axiosConfigured = axios.create({
     baseURL: apiUrl,
   });
   return {
-    getAllObjects: () => axios.get(`/objects`),
-    getObjectByID: (id: string) => axios.get(`/objects${id}`),
-    newObject: (data: objectI) => axios.post("", data),
+    getAllObjects: () => axiosConfigured.get(`/objects`),
+    getObjectByID: (id: string) => axiosConfigured.get(`/objects${id}`),
+    newObject: (data: objectI) => axiosConfigured.post("", data),
     updateObject: (id: string, data: objectI) =>
-      axios.put(`/objects/${id}`, data),
+      axiosConfigured.put(`/objects/${id}`, data),
     partiallyUpdateObject: (id: string, data: partiallyUpdateObjectI) =>
-      axios.patch(`/objects/${id}`, data),
+      axiosConfigured.patch(`/objects/${id}`, data),
     deleteObject: (id: string) => axios.delete(`/objects/${id}`),
   };
 };
