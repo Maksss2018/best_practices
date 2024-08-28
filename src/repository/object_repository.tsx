@@ -1,12 +1,15 @@
 import { objectI, partiallyUpdateObjectI } from "../services/objects_rest_api";
 
 interface objectReposotory {
-  getAllObjects: () => void;
-  getObjectByID: (id: string) => void;
-  newObject: (data: objectI) => void;
-  updateObject: (id: string, data: objectI) => void;
-  partiallyUpdateObject: (id: string, data: partiallyUpdateObjectI) => void;
-  deleteObject: (id: string) => void;
+  getAllObjects: () => Promise<{ data: objectI[] }>;
+  getObjectByID: (id: string) => Promise<{}>;
+  newObject: (data: objectI) => Promise<{}>;
+  updateObject: (id: string, data: objectI) => Promise<{}>;
+  partiallyUpdateObject: (
+    id: string,
+    data: partiallyUpdateObjectI
+  ) => Promise<{}>;
+  deleteObject: (id: string) => Promise<{}>;
 }
 
 export const objectReposotory = (api: objectReposotory) => {
